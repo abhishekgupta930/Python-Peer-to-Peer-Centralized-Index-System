@@ -148,6 +148,7 @@ def Main():
                 else:
                     # Open a file and write to it
                     filename = rfcNo
+                    datab = b""
                     with open(filename, "wb") as f:
                         while True:
                             part = peerSocket.recv(1024)

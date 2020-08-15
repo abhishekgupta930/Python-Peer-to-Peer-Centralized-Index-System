@@ -1,8 +1,8 @@
 import socket
 import time
+import argparse
 from MultithreadedServer.Peer import *
 from MultithreadedServer.Index import *
-
 from _thread import *
 import threading
 
@@ -10,8 +10,8 @@ lock = allocate_lock()
 
 
 class Server:
-    def __init__(self):
-        self.portNo = 7734
+    def __init__(self, port):
+        self.portNo = port
         self.peerList = []
         self.indexList = []
 
@@ -114,11 +114,11 @@ class Server:
 
 def main():
 
-    mainServer = Server()
     # Hostname and Port No. where Centralized Server is waiting for connections
     host = ""
-    port = 7734
+    serverPort = args.listen
 
+    mainServer = Server(serverPort)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((host, mainServer.portNo))
     print("socket binded to port", mainServer.portNo)
